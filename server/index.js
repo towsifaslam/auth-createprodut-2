@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from'cors';
 import morgan from 'morgan';
 import userRouter from'./routes/user.js';
-
+import tourRouter from'./routes/tour.js'
 // mongodb+srv://tour:tour1122@cluster0.wmzxwkp.mongodb.net/?retryWrites=true&w=majority
 
 const port = 5000;
@@ -15,6 +15,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(cors())
 
 app.use('/users',userRouter) // http:/localhost:5000/users/singup
+app.use('/tour',tourRouter)
 /// mongo url
 const MONGO_URL = 'mongodb+srv://tour:tour1122@cluster0.wmzxwkp.mongodb.net/tour_db?retryWrites=true&w=majority'
  

@@ -4,7 +4,7 @@ import
  
 import {toast}from'react-toastify'
 import {Link,useNavigate} from'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../redux/features/authSlice'
 const initialState = {
   firstName:'',
@@ -17,15 +17,15 @@ const initialState = {
 
 export default function Register() {
   const[formValue,setFormValue] = useState(initialState);
+  const{loading,error} = useSelector((state)=>({...state.auth}))
   const {firstName,lastName,email,password,confirmPassword} = formValue
    const dispatch = useDispatch();
    const navigate = useNavigate();
   const handleSubmit =(e)=>{
-    e.preventDefault()
+     e.preventDefault();
     if(password !== confirmPassword){ return toast.error("Passwod shoud match")}
     if(email && password && email && firstName&& lastName){
-       console.log({firstName,lastName,email,password})
-      dispatch(register(formValue,navigate,toast))
+       dispatch(register({formValue,navigate,toast}))
     }
   }
   const OnInputChange=(e)=>{
@@ -110,7 +110,9 @@ export default function Register() {
           <div className="col-12">
             <MDBBtn style={{ width: "100%" }} className="mt-2">
               
-                
+                {
+                  loading && ( <MDBSpinner size='sm' tag='span' className='me-2' />)
+                }
           
               Register
             </MDBBtn>

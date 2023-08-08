@@ -5,6 +5,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import {useDispatch,useSelector}from'react-redux'
 import {toast}from'react-toastify'
 import { login } from '../redux/features/authSlice'
+import {GoogleLogin} from'react-google-login'
 const initialState = {
   email: '',
   password:''
@@ -57,6 +58,7 @@ export default function Login() {
                 </MDBBtn>
                </div>
             </MDBValidation>
+          
           </MDBCardBody>
           <MDBCardFooter>
             <Link to='/register'>

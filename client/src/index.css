@@ -9,3 +9,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.header-text{
+    color: #606080;
+    font-weight: 500;
+    margin-top: 7px;
+    font-size: 17px;
+}
+.top-left{
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+}
+.tag-card{
+  margin: 10px 0 0 20px;
+  color:#806a78
+}

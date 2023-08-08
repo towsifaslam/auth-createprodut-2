@@ -4,6 +4,7 @@ import * as api from "../api";
 export const login = createAsyncThunk(
   "auth/login",
   async ({ formValue, navigate, toast }, { rejectWithValue }) => {
+    console.log("formvalue",formValue)
     try {
       const response = await api.singIn(formValue);
       toast.success("Login Successfully");
@@ -18,11 +19,11 @@ export const login = createAsyncThunk(
 export const register = createAsyncThunk(
   "auth/register",
   async ({ formValue, navigate, toast }, { rejectWithValue }) => {
-    console.log(formValue)
     try {
+  
       const response = await api.singUp(formValue);
       toast.success("Register Successfully");
-      navigate("/");
+      navigate("/login");
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -39,6 +40,15 @@ const authSlice = createSlice({
     error: "",
     loading: false,
   }, 
+  reducers:{
+    setUser :(state,action)=>{
+      state.user = action.payload
+    },
+    setLogout:(state,action)=>{
+      localStorage.clear()
+      state.user = null
+    }
+  },
   extraReducers: {
     [login.pending]: (state, action) => {
       state.loading = true;
@@ -67,5 +77,5 @@ const authSlice = createSlice({
   },
 });
 
- 
+ export const {setUser,setLogout} = authSlice.actions
 export default authSlice.reducer;
